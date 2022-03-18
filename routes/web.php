@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UrlShortnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::controller(UrlShortnerController::class)->group(function(){
+
+    Route::get('generate-shorten-link', 'index')->name('generate-shorten-link.index');
+    Route::post('generate-shorten-link', 'store')->name('generate-shorten-link.store');
+    Route::get('{code}', 'show')->name('generate-shorten-link.show');
+});
+
+// Route::resource('generate-shorten-link', UrlShortnerController::class);
